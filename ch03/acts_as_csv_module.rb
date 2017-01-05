@@ -13,11 +13,8 @@ module ActsAsCsv
 
     def method_missing header
       index = headers.index(header.to_s)
-      if index != nil
-        return contents[index]
-      else
-        throw "Method #{header} is not implemented!"
-      end
+      throw "Method #{header} is not implemented!" if index.nil?
+      contents[index]
     end
   end
 
