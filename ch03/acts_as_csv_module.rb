@@ -12,9 +12,9 @@ module ActsAsCsv
     end
 
     def method_missing header
-      index = @headers.index(header.to_s)
+      index = headers.index(header.to_s)
       if index != nil
-        return @contents[index]
+        return contents[index]
       else
         throw "Method #{header} is not implemented!"
       end
@@ -40,12 +40,13 @@ module ActsAsCsv
     end
 
     def each
-      @csv_contents.each do |row|
+      csv_contents.each do |row|
         yield CsvRow.new(headers: headers, contents: row)
       end
     end
 
     attr_accessor :headers, :csv_contents
+
     def initialize
       read
     end
